@@ -6,7 +6,7 @@ use serde_json::value::Value as JsonValue;
 
 #[derive(Deserialize, Debug, Eq, PartialEq)]
 pub struct ApiSuccess<ResultType> {
-    pub result: ResultType,
+    pub result: Option<ResultType>,
     pub result_info: Option<JsonValue>,
     #[serde(default)]
     pub messages: JsonValue,
