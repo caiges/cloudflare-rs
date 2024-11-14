@@ -6,12 +6,14 @@ use serde_json::value::Value as JsonValue;
 
 #[derive(Deserialize, Debug, Eq, PartialEq)]
 pub struct ApiSuccess<ResultType> {
-    pub result: Option<ResultType>,
+    #[serde(skip_serializing)]
+    pub result: ResultType,
     pub result_info: Option<JsonValue>,
     #[serde(default)]
     pub messages: JsonValue,
     #[serde(default)]
     pub errors: Vec<ApiError>,
+    pub success: bool,
 }
 
 pub type ApiResponse<ResultType> = Result<ApiSuccess<ResultType>, ApiFailure>;
